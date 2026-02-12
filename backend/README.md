@@ -37,3 +37,22 @@ To ensure this application can scale to handle millions of users and high traffi
 4. **Load Balancing**: Deploy multiple instances of each service behind a Load Balancer (like Nginx or AWS ALB) to distribute incoming traffic evenly.
 5. **Containerization (Docker & K8s)**: Dockerize the application to ensure consistency across environments. Use Kubernetes for orchestration, auto-scaling, and self-healing of service instances.
 6. **API Gateway**: Implement an API Gateway for centralized logging, rate limiting, and request routing.
+
+## Deployment Guide
+
+For the best performance and scalability, the frontend and backend should be hosted separately:
+
+### 1. Backend (Render)
+1. Sign up at [render.com](https://render.com).
+2. Create a new **Web Service** and connect your GitHub repo.
+3. Set **Root Directory** to `backend`.
+4. Set **Build Command** to `npm install && npm run build`.
+5. Set **Start Command** to `npm start`.
+6. Add Environment Variables: `MONGO_URI`, `JWT_SECRET`, `PORT=5000`.
+
+### 2. Frontend (Vercel)
+1. Sign up at [vercel.com](https://vercel.com).
+2. Import your GitHub repo.
+3. Set **Root Directory** to `frontend`.
+4. Add Environment Variable: `NEXT_PUBLIC_API_URL` (set to your Render URL + `/api`).
+5. Click **Deploy**.
